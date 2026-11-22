@@ -128,18 +128,35 @@
     hits.slice(0, 40).forEach(function (p) {
       var li = document.createElement('li');
       li.className = 'item';
-      li.innerHTML = '<div class="item-line"><a class="item-title" href="' + p.u + '">'
-        + esc(p.t) + '</a><time class="item-date">' + esc(p.d) + '</time></div>'
+      var tags = (p.g || []).map(function (t) {
+        return '<a class="tag" href="tag/' + encodeURIComponent(t) + '.html">' + esc(t) + '</a>';
+      }).join('');
+      li.innerHTML = '<div class="item-row"><a class="item-title" href="' + p.u + '">'
+        + esc(p.t) + '</a><span class="item-right">' + tags
+        + '<time class="item-date">' + esc(p.d) + '</time></span></div>'
         + '<p class="item-sum">' + esc(p.s) + '</p>';
       results.appendChild(li);
     });
   }
 
-  load().then(function () { render(input.value); });
+  load().then(function () {
+    var initial = '';
+    try { initial = new URLSearchParams(location.search).get('q') || ''; } catch (e) {}
+    if (initial && !input.value) input.value = initial;
+    render(input.value);
+  });
 
   var timer = null;
   input.addEventListener('input', function () {
     clearTimeout(timer);
-    timer = setTimeout(function () { render(input.value); }, 120);
+    timer = setTimeout(function () {
+      render(input.value);
+      try {
+        var u = new URL(location.href);
+        if (input.value.trim()) u.searchParams.set('q', input.value.trim());
+        else u.searchParams.delete('q');
+        history.replaceState(null, '', u.toString());
+      } catch (e) {}
+    }, 120);
   });
 })();

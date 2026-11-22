@@ -20,12 +20,21 @@ a:hover{color:var(--accent)}
 /* header */
 .site-head{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);
   background:color-mix(in srgb, var(--bg) 92%, transparent);backdrop-filter:blur(8px)}
-.site-head .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.brand{font-weight:700;font-size:18px;letter-spacing:.02em}
+.head-inner{display:flex;align-items:center;gap:18px;height:60px}
+.brand{font-weight:700;font-size:18px;letter-spacing:.02em;white-space:nowrap}
 .nav{display:flex;align-items:center;gap:16px;font-size:14px;color:var(--muted)}
 .nav a.on{color:var(--fg);font-weight:600}
 .nav a:hover{color:var(--accent)}
-.theme-btn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;width:30px;height:30px;cursor:pointer;font-size:13px;line-height:1}
+.head-tools{display:flex;align-items:center;gap:10px;margin-left:auto}
+.head-search{display:flex}
+.head-search input{width:14rem;font-size:13.5px;padding:6px 12px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);color:var(--fg);outline:none;
+  transition:border-color .15s,width .15s}
+.head-search input:focus{border-color:var(--accent)}
+.head-search input::placeholder{color:var(--muted)}
+.theme-btn{border:1px solid var(--line);background:transparent;color:var(--muted);
+  border-radius:999px;width:30px;height:30px;cursor:pointer;font-size:13px;
+  line-height:1;flex-shrink:0}
 .theme-btn:hover{color:var(--accent);border-color:var(--accent)}
 
 /* intro */
@@ -199,6 +208,20 @@ html[data-theme="dark"] .cloud-item{color:color-mix(in srgb,var(--tc) 58%,#fff)}
   align-items:center;justify-content:center;z-index:80;padding:24px;cursor:zoom-out}
 .lightbox img{max-width:96vw;max-height:92vh;border-radius:8px;box-shadow:0 12px 40px rgba(0,0,0,.5)}
 .prose img{cursor:zoom-in}
+
+/* ── 顶栏窄屏版式：品牌 + 搜索同一行，导航整行落下（参考黑柩 wiki 的 grid 做法） */
+@media (max-width:900px){
+  .head-inner{display:grid;grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"brand tools" "nav nav";
+    gap:8px 10px;height:auto;padding:10px 22px;align-items:center}
+  .brand{grid-area:brand;min-width:0;overflow:hidden;text-overflow:ellipsis;font-size:17px}
+  .head-tools{grid-area:tools;margin-left:0}
+  .head-search input{width:min(11rem,44vw);padding:5px 11px}
+  .nav{grid-area:nav;flex-wrap:nowrap;overflow-x:auto;gap:15px;font-size:13.5px;
+    padding-bottom:2px;scrollbar-width:none}
+  .nav::-webkit-scrollbar{display:none}
+  .nav a{flex-shrink:0}
+}
 
 @media (max-width:760px){
   .feat{grid-template-columns:1fr}

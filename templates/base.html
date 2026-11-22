@@ -15,16 +15,20 @@
 </head>
 <body>
 <header class="site-head">
-  <div class="wrap">
+  <div class="wrap head-inner">
     <a class="brand" href="{{ base }}/">{{ cfg.title }}</a>
     <nav class="nav">
       <a href="{{ base }}/"{% if page == 'index' %} class="on"{% endif %}>首页</a>
       <a href="{{ base }}/archive.html"{% if page == 'archive' %} class="on"{% endif %}>归档</a>
       <a href="{{ base }}/tag.html"{% if page == 'tags' or page == 'tag' %} class="on"{% endif %}>标签</a>
-      <a href="{{ base }}/search.html"{% if page == 'search' %} class="on"{% endif %}>搜索</a>
       <a href="{{ base }}/rss.xml">RSS</a>
-      <button class="theme-btn" id="theme-toggle" type="button" aria-label="切换深色模式">◐</button>
     </nav>
+    <div class="head-tools">
+      <form class="head-search" action="{{ base }}/search.html" method="get" role="search">
+        <input name="q" id="qs" type="search" placeholder="搜索文章…" aria-label="搜索文章" autocomplete="off">
+      </form>
+      <button class="theme-btn" id="theme-toggle" type="button" aria-label="切换深色模式">◐</button>
+    </div>
   </div>
 </header>
 
