@@ -16,6 +16,7 @@ import json
 import os
 import re
 import shutil
+import urllib.parse
 from datetime import datetime, timedelta, timezone
 
 import markdown as md
@@ -215,7 +216,13 @@ def main():
         p["summary"] = plain_summary(p, html_body)
         p["words"] = len(re.sub(r"\s", "", re.sub(r"<[^>]+>", "", html_body)))
         p["minutes"] = max(1, round(p["words"] / 400))
-        p["url"] = "%s/post/%s.html" % (base, p["slug"])
+        # slug 可能是百分号编码（从旧站 postUrl 继承来的）：文件名要用解码后的，
+        # 链接要用编码后的，否则浏览器解码后找不到文件 → 404。
+        p["slug_file"] = urllib.parse.unquote(p["slug"])
+        bad = re.search(r'[:/\\*?"<>|]', p["slug_file"])
+        if bad:
+            p["slug_file"] = re.sub(r'[:/\\*?"<>|]', "-", p["slug_file"])
+        p["url"] = "%s/post/%s.html" % (base, urllib.parse.quote(p["slug_file"]))
 
     posts.sort(key=lambda x: (x.get("top", 0), x["date"], x["pid"]), reverse=True)
 
@@ -257,6 +264,12 @@ def main():
         if items:
             recs.append({"tag": tag, "posts": items})
 
+    # ---- 友链
+    friends = []
+    friends_path = os.path.join(ROOT, "data", "friends.json")
+    if os.path.exists(friends_path):
+        friends = json.load(open(friends_path, encoding="utf-8"))
+
     env = Environment(loader=FileSystemLoader(TEMPLATES),
                       autoescape=select_autoescape(["html"]),
                       trim_blocks=True, lstrip_blocks=True)
@@ -267,6 +280,7 @@ def main():
     tpl_tags = env.get_template("tags.html")
     tpl_search = env.get_template("search.html")
     tpl_archive = env.get_template("archive.html")
+    tpl_friends = env.get_template("friends.html")
 
     per_page = int(cfg.get("perPage", 25))
 
@@ -277,7 +291,7 @@ def main():
         html_out = tpl_post.render(post=p, newer=newer, older=older, page="post",
                                    page_title=p["title"],
                                    show_toc=len(p["toc"]) >= 3 and p["words"] > 1500)
-        open(os.path.join(out_dir, "post", p["slug"] + ".html"), "w", encoding="utf-8").write(html_out)
+        open(os.path.join(out_dir, "post", p["slug_file"] + ".html"), "w", encoding="utf-8").write(html_out)
 
     # ---- 首页分页
     pages = [posts[i:i + per_page] for i in range(0, len(posts), per_page)] or [[]]
@@ -314,6 +328,11 @@ def main():
     open(os.path.join(out_dir, "archive.html"), "w", encoding="utf-8").write(
         tpl_archive.render(archive=archive, page="archive", page_title="归档", total=len(posts)))
 
+    # ---- 友链页
+    if friends:
+        open(os.path.join(out_dir, "friends.html"), "w", encoding="utf-8").write(
+            tpl_friends.render(friends=friends, page="friends", page_title="友链"))
+
     # ---- 搜索页 / 索引
     open(os.path.join(out_dir, "search.html"), "w", encoding="utf-8").write(
         tpl_search.render(page="search", page_title="搜索"))
@@ -327,6 +346,8 @@ def main():
     open(os.path.join(out_dir, "rss.xml"), "w", encoding="utf-8").write(
         build_rss(cfg, base, posts))
     urls = [base + "/", base + "/archive.html", base + "/tag.html", base + "/search.html"]
+    if friends:
+        urls.append(base + "/friends.html")
     urls += [p["url"] for p in posts]
     urls += ["%s/tag/%s.html" % (base, t) for t in tag_map]
     open(os.path.join(out_dir, "sitemap.xml"), "w", encoding="utf-8").write(

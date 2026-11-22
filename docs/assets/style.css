@@ -145,6 +145,30 @@ html[data-theme="dark"] .cloud-item{color:color-mix(in srgb,var(--tc) 58%,#fff)}
 .to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
 .to-top:hover{color:var(--accent);border-color:var(--accent)}
 
+/* 友链页 */
+.friends{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:12px}
+.friend{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);
+  border-radius:12px;background:var(--card);transition:border-color .15s,background .15s}
+.friend:hover{border-color:var(--fc,var(--accent))}
+.friend:hover .friend-name,.friend:hover .friend-go{color:var(--fc,var(--accent))}
+.friend-thumb{position:relative;flex-shrink:0;width:56px;height:56px}
+.friend-icon{width:100%;height:100%;border-radius:12px;object-fit:cover;display:block;
+  border:1px solid color-mix(in srgb,var(--fc,#8b8b8b) 24%,transparent);background:var(--bg)}
+.friend-badge{position:absolute;right:-6px;bottom:-6px;min-width:18px;height:18px;padding:0 4px;
+  border-radius:999px;background:var(--fc,#8b8b8b);color:#fff;font-size:10.5px;font-weight:600;
+  line-height:14px;text-align:center;border:2px solid var(--card);box-sizing:content-box}
+.friend-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.friend-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.friend-name{font-size:17px;font-weight:700;line-height:1.4}
+.friend-kind{font-size:11px;border-radius:999px;padding:0 7px;line-height:1.7;white-space:nowrap;
+  color:color-mix(in srgb,var(--fc,#8b8b8b) 68%,#000);
+  border:1px solid color-mix(in srgb,var(--fc,#8b8b8b) 30%,transparent);
+  background:color-mix(in srgb,var(--fc,#8b8b8b) 10%,transparent)}
+html[data-theme="dark"] .friend-kind{color:color-mix(in srgb,var(--fc,#8b8b8b) 60%,#fff)}
+.friend-desc{color:var(--muted);font-size:13.5px;line-height:1.6}
+.friend-host{color:var(--muted);font-size:11.5px;opacity:.75;line-height:1.5}
+.friend-go{color:var(--muted);font-size:15px;flex-shrink:0;transition:color .15s}
+
 /* footer */
 .site-foot{border-top:1px solid var(--line);margin-top:60px;padding:22px 0 40px;
   color:var(--muted);font-size:13px}
@@ -240,4 +264,11 @@ html[data-theme="dark"] .cloud-item{color:color-mix(in srgb,var(--tc) 58%,#fff)}
   .item-right{width:100%;order:2}
   .item-date{margin-left:auto}
   .item-sum{-webkit-line-clamp:2}
+  .friend{padding:12px 13px;gap:12px}
+  .friend-thumb{width:48px;height:48px}
+  .friend-icon{border-radius:10px}
+  .friend-badge{right:-5px;bottom:-5px;min-width:17px;height:17px;font-size:10px;line-height:13px}
+  .friend-name{font-size:16px}
+  .friend-desc{font-size:13px}
+  .friend-host{font-size:11px}
 }

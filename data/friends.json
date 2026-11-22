@@ -1,0 +1,60 @@
+[
+ {
+  "name": "特零128 的歌",
+  "kind": "音乐站",
+  "url": "https://tl128-music.hubingsf.cn/",
+  "host": "tl128-music.hubingsf.cn",
+  "icon": "tl128-music.jpg",
+  "color": "#C2410C",
+  "badge": "♪",
+  "desc": "我唱的歌：42 首翻唱，能在线听、看同步歌词，还能当播客订阅。"
+ },
+ {
+  "name": "斛兵群星科幻协会",
+  "kind": "协会站",
+  "url": "https://hubingsf.cn/",
+  "host": "hubingsf.cn",
+  "icon": "hubingsf.jpg",
+  "color": "#2563EB",
+  "desc": "合肥工业大学科幻协会的窝：社史、沙龙、跑团与「幻协之路」，天马行空的幻想咖啡厅。"
+ },
+ {
+  "name": "黑柩创作站",
+  "kind": "创作站",
+  "url": "https://darkcoffin.hubingsf.cn/",
+  "host": "darkcoffin.hubingsf.cn",
+  "icon": "darkcoffin.png",
+  "color": "#6B7280",
+  "badge": "创",
+  "desc": "《黑柩》的原点：一个后启示录的彷徨世界，小说与设定都从这里长出来。"
+ },
+ {
+  "name": "黑柩 Wiki",
+  "kind": "资料站",
+  "url": "https://darkcoffin-wiki.hubingsf.cn/",
+  "host": "darkcoffin-wiki.hubingsf.cn",
+  "icon": "darkcoffin-wiki.png",
+  "color": "#0284C7",
+  "badge": "W",
+  "desc": "花絮、跑团剧情志、设定集、分析报告——四套整理，把一部作品拆开、摆好、编成索引。"
+ },
+ {
+  "name": "黑柩 小游戏",
+  "kind": "游戏站",
+  "url": "https://darkcoffin-game.hubingsf.cn/",
+  "host": "darkcoffin-game.hubingsf.cn",
+  "icon": "darkcoffin-game.png",
+  "color": "#059669",
+  "badge": "游",
+  "desc": "用印五日、命途转盘、和平会议：四件能亲手玩的《黑柩》同人网页小游戏。"
+ },
+ {
+  "name": "特零的马克思主义学习站",
+  "kind": "学习站",
+  "url": "https://tl128-marx.hubingsf.cn/",
+  "host": "tl128-marx.hubingsf.cn",
+  "icon": "tl128-marx.png",
+  "color": "#DC2626",
+  "desc": "全世界无产者，联合起来。原著选读与学习打卡，从《国家与革命》一路读下去。"
+ }
+]

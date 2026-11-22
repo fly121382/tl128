@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="intro">
+  <h1>友链</h1>
+  <p>{{ friends|length }} 个同路的站点</p>
+</section>
+
+<ul class="friends">
+  {% for f in friends %}
+  <li style="--fc: {{ f.color or '#8b8b8b' }}">
+    <a class="friend" href="{{ f.url }}" target="_blank" rel="noopener">
+      <span class="friend-thumb">
+        <img class="friend-icon" src="{{ base }}/assets/friends/{{ f.icon }}" alt="{{ f.name }} 的图标" width="56" height="56" loading="lazy">
+        {% if f.badge %}<span class="friend-badge">{{ f.badge }}</span>{% endif %}
+      </span>
+      <span class="friend-body">
+        <span class="friend-line">
+          <span class="friend-name">{{ f.name }}</span>
+          <span class="friend-kind">{{ f.kind }}</span>
+        </span>
+        <span class="friend-desc">{{ f.desc }}</span>
+        <span class="friend-host">{{ f.host }}</span>
+      </span>
+      <span class="friend-go" aria-hidden="true">↗</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
