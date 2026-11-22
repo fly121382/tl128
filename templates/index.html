@@ -6,6 +6,39 @@
   <p>{{ cfg.subTitle }} · 共 {{ total }} 篇</p>
 </section>
 
+{% if featured %}
+<section class="block">
+  <h2 class="block-title">主打作品</h2>
+  <div class="feat">
+    {% for f in featured %}
+    <a class="feat-item" href="{{ f.post.url }}">
+      <span class="feat-name">{{ f.post.title }}</span>
+      <span class="feat-blurb">{{ f.blurb }}</span>
+      <span class="feat-meta">{{ f.post.words }} 字 · {{ f.post.tags|join(' · ') }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if recs %}
+<section class="block">
+  <h2 class="block-title">类别推荐</h2>
+  <div class="recs">
+    {% for col in recs %}
+    <div class="rec-col">
+      <h3 class="rec-head"><a {{ ui.tagstyle(tag_colors, col.tag) }} href="{{ base }}/tag/{{ col.tag }}.html">{{ col.tag }}</a></h3>
+      <ol class="rec-list">
+        {% for p in col.posts %}
+        <li><a href="{{ p.url }}">{{ p.title }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
 {{ ui.listing(posts, tag_colors) }}
 
 {% if page_count > 1 %}

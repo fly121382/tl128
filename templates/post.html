@@ -7,17 +7,42 @@
     <span>{{ post.words }} 字</span>
     <span>约 {{ post.minutes }} 分钟</span>
     {% for t in post.tags %}<a class="tag" style="--tc: {{ tag_colors.get(t, '#8b8b8b') }}" href="{{ base }}/tag/{{ t }}.html">{{ t }}</a>{% endfor %}
+    <span class="font-ctrl" role="group" aria-label="字号">
+      <button type="button" data-fs="down">A−</button>
+      <button type="button" data-fs="reset">A</button>
+      <button type="button" data-fs="up">A+</button>
+    </span>
   </div>
+
+  {% if show_toc %}
+  <details class="toc-box">
+    <summary>目录 · {{ post.toc|length }} 节</summary>
+    <ol class="toc-list">
+      {% for e in post.toc %}
+      <li class="lv{{ e.level }}"><a href="#{{ e.id }}">{{ e.text }}</a></li>
+      {% endfor %}
+    </ol>
+  </details>
+  {% endif %}
 
   <div class="prose">
 {{ post.html|safe }}
   </div>
 </article>
 
+{% if post.related %}
+<section class="related">
+  <h2 class="block-title">相关文章</h2>
+  <ul class="related-list">
+    {% for r in post.related %}
+    <li><a href="{{ r.url }}">{{ r.title }}</a><time>{{ r.date }}</time></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
 <nav class="pager">
   {% if older %}<a class="pg" href="{{ older.url }}">← {{ older.title }}</a>{% else %}<span></span>{% endif %}
   {% if newer %}<a class="pg pg-next" href="{{ newer.url }}">{{ newer.title }} →</a>{% endif %}
 </nav>
-
-<p class="backtop"><a href="#">回到顶部 ↑</a></p>
 {% endblock %}

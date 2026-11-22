@@ -6,16 +6,14 @@ style="--tc: {{ tag_colors.get(t, '#8b8b8b') }}"
 <ol class="listing">
   {% for p in posts %}
   <li class="item">
-    <div class="item-line">
-      <a class="item-title" href="{{ p.url }}">{{ p.title }}</a>
-      <time class="item-date" datetime="{{ p.date }}">{{ p.date }}</time>
+    <div class="item-row">
+      <a class="item-title" href="{{ p.url }}">{{ p.title }}{% if p.new %}<span class="new">NEW</span>{% endif %}</a>
+      <span class="item-right">
+        {% for t in p.tags %}<a class="tag" {{ tagstyle(tag_colors, t) }} href="{{ base }}/tag/{{ t }}.html">{{ t }}</a>{% endfor %}
+        <time class="item-date" datetime="{{ p.date }}">{{ p.date }}</time>
+      </span>
     </div>
     {% if show_sum and p.summary %}<p class="item-sum">{{ p.summary }}</p>{% endif %}
-    {% if p.tags %}
-    <div class="item-tags">
-      {% for t in p.tags %}<a class="tag" {{ tagstyle(tag_colors, t) }} href="{{ base }}/tag/{{ t }}.html">{{ t }}</a>{% endfor %}
-    </div>
-    {% endif %}
   </li>
   {% endfor %}
 </ol>

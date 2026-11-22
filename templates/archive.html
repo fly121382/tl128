@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="intro">
+  <h1>归档</h1>
+  <p>共 {{ total }} 篇 · 按年份</p>
+</section>
+
+{% for year, items in archive %}
+<section class="year">
+  <h2 class="year-head">{{ year }}<span>{{ items|length }} 篇</span></h2>
+  <ol class="archive-list">
+    {% for p in items %}
+    <li>
+      <a href="{{ p.url }}">{{ p.title }}{% if p.new %}<span class="new">NEW</span>{% endif %}</a>
+      <span class="arc-meta">
+        {% for t in p.tags %}<a class="tag" style="--tc: {{ tag_colors.get(t, '#8b8b8b') }}" href="{{ base }}/tag/{{ t }}.html">{{ t }}</a>{% endfor %}
+        <time>{{ p.date[5:] }}</time>
+      </span>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endfor %}
+{% endblock %}
