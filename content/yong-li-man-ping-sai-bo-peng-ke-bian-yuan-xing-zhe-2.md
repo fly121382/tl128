@@ -4,6 +4,7 @@
  "date": "2026-10-21",
  "tags": [
   "杂文",
+  "动漫",
   "用力漫评"
  ],
  "slug": "yong-li-man-ping-sai-bo-peng-ke-bian-yuan-xing-zhe-2",
