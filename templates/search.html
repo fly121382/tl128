@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="intro">
+  <h1>搜索</h1>
+  <p>在标题、标签和正文里找</p>
+</section>
+
+<div class="search-box">
+  <input id="q" type="search" placeholder="输入关键词，比如「双相」「赛博朋克」「诗」" autocomplete="off" autofocus>
+</div>
+
+<p id="hint" class="hint"></p>
+<ol id="results" class="listing"></ol>
+{% endblock %}

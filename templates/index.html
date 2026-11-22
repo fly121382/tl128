@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% import "_macros.html" as ui %}
+{% block content %}
+<section class="intro">
+  <h1>{{ cfg.title }}</h1>
+  <p>{{ cfg.subTitle }} · 共 {{ total }} 篇</p>
+</section>
+
+{{ ui.listing(posts) }}
+
+{% if page_count > 1 %}
+<nav class="pager">
+  {% if page_no > 1 %}<a class="pg" href="{{ base }}/{{ 'index.html' if page_no == 2 else 'page%d.html' % (page_no - 1) }}">← 上一页</a>{% endif %}
+  <span class="pg-info">{{ page_no }} / {{ page_count }}</span>
+  {% if page_no < page_count %}<a class="pg" href="{{ base }}/page{{ page_no + 1 }}.html">下一页 →</a>{% endif %}
+</nav>
+{% endif %}
+{% endblock %}

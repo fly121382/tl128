@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% if page_title %}{{ page_title }} · {{ cfg.title }}{% else %}{{ cfg.title }} · {{ cfg.subTitle }}{% endif %}</title>
+<meta name="description" content="{{ cfg.description }}">
+<meta property="og:title" content="{{ page_title or cfg.title }}">
+<meta property="og:description" content="{{ cfg.description }}">
+<meta property="og:type" content="website">
+<link rel="icon" href="{{ cfg.avatarUrl }}">
+<link rel="stylesheet" href="{{ base }}/assets/style.css">
+<link rel="alternate" type="application/rss+xml" title="{{ cfg.title }}" href="{{ base }}/rss.xml">
+<script>try{var t=localStorage.getItem('tl128-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="{{ base }}/">{{ cfg.title }}</a>
+    <nav class="nav">
+      <a href="{{ base }}/"{% if page == 'index' %} class="on"{% endif %}>首页</a>
+      <a href="{{ base }}/tag.html"{% if page == 'tags' or page == 'tag' %} class="on"{% endif %}>标签</a>
+      <a href="{{ base }}/search.html"{% if page == 'search' %} class="on"{% endif %}>搜索</a>
+      <a href="{{ base }}/rss.xml">RSS</a>
+      <button class="theme-btn" id="theme-toggle" type="button" aria-label="切换深色模式">◐</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>{{ cfg.footer }} · © {{ cfg.startSite[:4] }}–2026 {{ cfg.author }}</p>
+  </div>
+</footer>
+<script src="{{ base }}/assets/app.js" defer></script>
+</body>
+</html>

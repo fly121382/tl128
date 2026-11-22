@@ -1,0 +1,18 @@
+{% macro listing(posts, show_sum=True) %}
+<ol class="listing">
+  {% for p in posts %}
+  <li class="item">
+    <div class="item-line">
+      <a class="item-title" href="{{ p.url }}">{{ p.title }}</a>
+      <time class="item-date" datetime="{{ p.date }}">{{ p.date }}</time>
+    </div>
+    {% if show_sum and p.summary %}<p class="item-sum">{{ p.summary }}</p>{% endif %}
+    {% if p.tags %}
+    <div class="item-tags">
+      {% for t in p.tags %}<a class="tag" href="{{ base }}/tag/{{ t }}.html">{{ t }}</a>{% endfor %}
+    </div>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ol>
+{% endmacro %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% import "_macros.html" as ui %}
+{% block content %}
+<section class="intro">
+  <h1>标签：{{ tag }}</h1>
+  <p>共 {{ total }} 篇</p>
+</section>
+{{ ui.listing(posts) }}
+{% endblock %}

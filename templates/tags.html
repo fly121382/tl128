@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="intro">
+  <h1>全部标签</h1>
+  <p>共 {{ tags|length }} 个标签</p>
+</section>
+
+<div class="cloud">
+  {% for t, items in tags %}
+  <a class="cloud-item" href="{{ base }}/tag/{{ t }}.html">{{ t }}<span>{{ items|length }}</span></a>
+  {% endfor %}
+</div>
+{% endblock %}
