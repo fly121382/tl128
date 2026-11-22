@@ -170,7 +170,7 @@ def main():
         autoescape=select_autoescape(["html"]),
         trim_blocks=True, lstrip_blocks=True,
     )
-    env.globals.update(base=base, cfg=cfg)
+    env.globals.update(base=base, cfg=cfg, tag_colors=cfg.get("tagColors", {}))
     tpl_index = env.get_template("index.html")
     tpl_post = env.get_template("post.html")
     tpl_tag = env.get_template("tag.html")

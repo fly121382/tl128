@@ -7,7 +7,7 @@
 
 <div class="cloud">
   {% for t, items in tags %}
-  <a class="cloud-item" href="{{ base }}/tag/{{ t }}.html">{{ t }}<span>{{ items|length }}</span></a>
+  <a class="cloud-item" style="--tc: {{ tag_colors.get(t, '#8b8b8b') }}" href="{{ base }}/tag/{{ t }}.html">{{ t }}<span>{{ items|length }}</span></a>
   {% endfor %}
 </div>
 {% endblock %}

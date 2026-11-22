@@ -6,7 +6,7 @@
   <p>{{ cfg.subTitle }} · 共 {{ total }} 篇</p>
 </section>
 
-{{ ui.listing(posts) }}
+{{ ui.listing(posts, tag_colors) }}
 
 {% if page_count > 1 %}
 <nav class="pager">

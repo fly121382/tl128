@@ -1,4 +1,8 @@
-{% macro listing(posts, show_sum=True) %}
+{% macro tagstyle(tag_colors, t) -%}
+style="--tc: {{ tag_colors.get(t, '#8b8b8b') }}"
+{%- endmacro %}
+
+{% macro listing(posts, tag_colors, show_sum=True) %}
 <ol class="listing">
   {% for p in posts %}
   <li class="item">
@@ -9,7 +13,7 @@
     {% if show_sum and p.summary %}<p class="item-sum">{{ p.summary }}</p>{% endif %}
     {% if p.tags %}
     <div class="item-tags">
-      {% for t in p.tags %}<a class="tag" href="{{ base }}/tag/{{ t }}.html">{{ t }}</a>{% endfor %}
+      {% for t in p.tags %}<a class="tag" {{ tagstyle(tag_colors, t) }} href="{{ base }}/tag/{{ t }}.html">{{ t }}</a>{% endfor %}
     </div>
     {% endif %}
   </li>

@@ -6,7 +6,7 @@
     <time datetime="{{ post.date }}">{{ post.date }}</time>
     <span>{{ post.words }} 字</span>
     <span>约 {{ post.minutes }} 分钟</span>
-    {% for t in post.tags %}<a class="tag" href="{{ base }}/tag/{{ t }}.html">{{ t }}</a>{% endfor %}
+    {% for t in post.tags %}<a class="tag" style="--tc: {{ tag_colors.get(t, '#8b8b8b') }}" href="{{ base }}/tag/{{ t }}.html">{{ t }}</a>{% endfor %}
   </div>
 
   <div class="prose">

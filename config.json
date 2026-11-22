@@ -3,11 +3,23 @@
  "subTitle": "一个半桶水的科幻/百合/架空世界写手",
  "description": "特零128的个人博客：小说、诗、杂文与书评。",
  "author": "特零128",
- "baseUrl": "https://fly121382.github.io/tl128",
+ "baseUrl": "https://timeleaper128.hubingsf.cn",
  "avatarUrl": "https://avatars.githubusercontent.com/u/182115903?v=4",
  "startSite": "2016-12-04",
  "perPage": 25,
  "utcOffset": 8,
  "footer": "转载请注明出处",
- "searchScope": 600
+ "searchScope": 600,
+ "tagColors": {
+  "杂文": "#02B4BC",
+  "短篇": "#ACB803",
+  "中篇": "#EEB348",
+  "长篇": "#FD075A",
+  "半成品": "#87475D",
+  "诗": "#72FDF4",
+  "黑柩": "#000000",
+  "商业创作": "#D7422D",
+  "大纲": "#BFD4F2",
+  "连载章节": "#0052CC"
+ }
 }
